@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+  --background: #f7f8ff;
+  --foreground: #192340;
+  --surface: #edf0fb;
+  --muted: #505b79;
+  --border: #7c86a8;
+  --primary: #553bb3;
+  --primary-hover: #422b96;
+  --on-primary: #ffffff;
+  --accent-text: var(--primary);
+  --accent-panel: #392b79;
+  --accent-2: #a12532;
+  --success: #166534;
+  --warning: #92400e;
+  --danger: var(--accent-2);
+  --info: #075985;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--on-primary);
+  --color-accent-panel: var(--accent-panel);
+  --color-accent-text: var(--accent-text);
+  --color-accent-2: var(--accent-2);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #14192d;
+  --foreground: #f3f1ff;
+  --surface: #02040c;
+  --muted: #c0c8e5;
+  --border: #828db5;
+  --primary: #b9a5ff;
+  --primary-hover: #d0c2ff;
+  --on-primary: #20123e;
+  --accent-text: #d0c2ff;
+  --accent-panel: #241d3a;
+  --accent-2: #ffabb0;
+  --success: #86efac;
+  --warning: #fcd34d;
+  --danger: #ffabb0;
+  --info: #7dd3fc;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+@layer components {
+  input {
+    @apply rounded-md border border-foreground/20 p-1;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  .form-input {
+    @apply mt-2 block min-h-11 w-full rounded-lg border-border bg-foreground/30 px-3 py-2 text-sm text-foreground focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-accent-text motion-safe:transition-colors motion-safe:duration-200;
+  }
+
+  .button {
+    @apply inline-flex min-h-11 items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-text motion-safe:transition-colors motion-safe:duration-200;
+  }
+
+  .button-primary {
+    @apply bg-primary text-on-primary enabled:hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-70;
+  }
+
+  .button-secondary {
+    @apply border border-border bg-surface text-foreground hover:border-primary;
+  }
+
+  .text-action {
+    @apply font-semibold text-accent-text underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-text;
+  }
+
+  .error-text {
+    @apply text-xs text-accent-2 mx-auto text-center
+  }
+}
