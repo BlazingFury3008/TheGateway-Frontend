@@ -4,13 +4,14 @@ export async function POST(request: Request) {
     try {
         const data = await request.json();
 
-        const {email, username, password} = data
+        const { email, username, password } = data
 
         const res = await fetch(`${BACKEND_URL}/credentials/signup`, {
             method: "POST",
             body: JSON.stringify({
                 email, username, password
             }),
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             }
@@ -22,10 +23,7 @@ export async function POST(request: Request) {
             })
         }
 
-        return Response.json({
-            message: "Account created successfully"
-        }, {status: 200})
-
+        return res
     } catch {
         return Response.json({ error: "Expected a JSON body." }, { status: 400 });
     }

@@ -1,14 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-
-type ThemeType = "light" | "dark";
-
-type ThemeContextProps = {
-  theme: ThemeType;
-  setTheme: React.Dispatch<React.SetStateAction<ThemeType>>;
-  switchTheme: () => void;
-};
+import { ThemeContextProps, ThemeType } from "./lib";
 
 export const ThemeContext = createContext<ThemeContextProps | null>(null);
 

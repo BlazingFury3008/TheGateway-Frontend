@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Signup({ swapTab }: { swapTab: () => void }) {
@@ -10,6 +11,8 @@ export default function Signup({ swapTab }: { swapTab: () => void }) {
 
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>();
+  const router = useRouter()
+  
 
   useEffect(() => {
     if (
@@ -45,10 +48,8 @@ export default function Signup({ swapTab }: { swapTab: () => void }) {
         setErrorMessage(`${res.statusText}`);
         return;
       }
-      else
-      {
-        alert("THIS WILL BE USER HANDLING")
-      }
+
+      router.push("/account")
 
     } catch {
       setErrorMessage("Internal Server Error");
